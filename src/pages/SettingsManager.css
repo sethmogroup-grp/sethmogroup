@@ -13,20 +13,3 @@
 }
 .card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; color: #d3121b; }
 .card-header h3 { margin: 0; color: #1a1a1a; font-size: 1.1rem; }
-
-.security-card {
-  border-left: 4px solid #d3121b; /* Sethmo Red */
-}
-
-.btn-secondary {
-  background: #333;
-  color: white;
-  margin-top: 10px;
-  width: 100%;
-}
-
-.status-badge.error {
-  background: #fff5f5;
-  color: #d3121b;
-  border: 1px solid #fed7d7;
-}
