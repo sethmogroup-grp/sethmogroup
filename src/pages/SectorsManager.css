@@ -1,0 +1,72 @@
+.header-actions {
+  display: flex;
+  gap: 15px;
+}
+
+.sectors-manager-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.sector-list-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  background: #f1f5f9;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  transition: all 0.2s;
+}
+
+.sidebar-item button {
+  flex: 1;
+  padding: 15px;
+  text-align: left;
+  border: none;
+  background: none;
+  font-weight: 600;
+  color: #475569;
+  cursor: pointer;
+}
+
+.sidebar-item.active {
+  background: #d3121b;
+  border-color: #d3121b;
+}
+
+.sidebar-item.active button {
+  color: white;
+}
+
+.delete-icon {
+  padding: 0 15px;
+  color: #94a3b8;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.sidebar-item.active .delete-icon {
+  color: rgba(255,255,255,0.7);
+}
+
+.delete-icon:hover {
+  color: #ef4444;
+}
+
+.btn-secondary {
+  background-color: #f1f5f9;
+  color: #1a1f2c;
+  border: 1px solid #e2e8f0;
+}
+
+.btn-secondary:hover {
+  background-color: #e2e8f0;
+}

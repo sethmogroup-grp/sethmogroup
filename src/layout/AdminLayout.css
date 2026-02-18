@@ -1,0 +1,12 @@
+.admin-container {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f7fafc; /* Very light grey background for content */
+}
+
+.admin-content {
+  margin-left: 260px; /* Matches Sidebar Width */
+  flex: 1;
+  padding: 40px;
+  overflow-y: auto;
+}
