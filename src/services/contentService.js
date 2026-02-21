@@ -253,3 +253,31 @@ export const saveSettings = async (settingsData) => {
   if (!res.ok) await handleFetchError(res);
   return res.json();
 };
+
+// ---------- Home Businesses ----------
+export const getHomeBusinessData = async () => {
+  const res = await fetch(`${API_URL}/home-business`);
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};
+
+export const saveHomeBusinessData = async (data) => {
+  const res = await fetch(`${API_URL}/home-business`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  });
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};
+
+export const uploadHomeBusinessFile = async (file) => {
+  const formData = new FormData();
+  formData.append('file', file);
+  const res = await fetch(`${API_URL}/home-business/upload`, {
+    method: 'POST',
+    body: formData,
+  });
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};

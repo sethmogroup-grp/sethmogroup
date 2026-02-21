@@ -14,7 +14,8 @@ import {
   Layers, 
   Users,
   ShieldCheck,
-  HeartHandshake 
+  HeartHandshake,
+  Building // 1. Added the Building icon here
 } from 'lucide-react';
 import './Sidebar.css';
 
@@ -65,6 +66,13 @@ const Sidebar = () => {
               <ShieldCheck size={16} />
               <span>7 Strategic Pillars</span>
             </NavLink>
+            
+            {/* 2. Added the Our Businesses Link here */}
+            <NavLink to="/home/businesses" className={({ isActive }) => isActive ? "nav-item sub-item active" : "nav-item sub-item"}>
+              <Building size={16} />
+              <span>Our Businesses</span>
+            </NavLink>
+            
           </div>
         </div>
 

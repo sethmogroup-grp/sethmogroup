@@ -19,7 +19,8 @@ import TeamManager from './pages/TeamManager';
 import SustainabilityManager from './pages/SustainabilityManager';
 import CommunityManager from './pages/CommunityManager';
 import SettingsManager from './pages/SettingsManager';
-import Login from './pages/Login'; // Your new high-end login page
+import Login from './pages/Login'; 
+import HomeBusinessManager from './pages/HomeBusinessManager'; // 1. Added Import Here
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
           <Route path="home/hero" element={<HeroManager />} />
           <Route path="home/vision" element={<VisionManager />} />
           <Route path="home/pillars" element={<PillarsManager />} />
+          <Route path="home/businesses" element={<HomeBusinessManager />} /> {/* 2. Added Route Here */}
 
           {/* Community Group */}
           <Route path="community/settings" element={<CommunityManager />} />
