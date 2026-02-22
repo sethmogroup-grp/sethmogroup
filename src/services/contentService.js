@@ -231,8 +231,9 @@ export const saveCareers = async (jobsArray) => {
   return res.json();
 };
 
+// ---------- DASHBOARD STATS ----------
 export const getDashboardStats = async () => {
-  const res = await fetch(`${API_URL}/dashboard-stats`);
+  const res = await fetch(`${API_URL}/dashboard`); // <-- The endpoint perfectly matches your server now!
   if (!res.ok) await handleFetchError(res);
   return res.json();
 };
