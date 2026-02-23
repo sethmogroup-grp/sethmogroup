@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Save, Plus, Trash2, Upload, User, Briefcase, AlignLeft } from 'lucide-react';
-import { getTeamData, saveTeamData } from '../services/contentService';
+// IMPORT THE NEW DELETE FUNCTION HERE
+import { getTeamData, saveTeamData, deleteTeamMember } from '../services/contentService';
 import { convertToBase64 } from '../utils/fileHandler';
 import './TeamManager.css';
 
@@ -27,10 +28,27 @@ const TeamManager = () => {
     setMembers([...members, { name: '', role: '', bio: '', imageUrl: '' }]);
   };
 
-  const removeMember = (index) => {
-    if (window.confirm("Delete this team member?")) {
-      const updated = members.filter((_, i) => i !== index);
-      setMembers(updated);
+  // UPDATED: Now permanently deletes from the database!
+  const removeMember = async (index, memberId) => {
+    if (window.confirm("Are you sure you want to permanently delete this team member?")) {
+      try {
+        // If they have an ID, delete them from the backend database first
+        if (memberId) {
+          setStatus('Deleting member from database...');
+          await deleteTeamMember(memberId);
+        }
+        
+        // Remove them from the local UI
+        const updated = members.filter((_, i) => i !== index);
+        setMembers(updated);
+        
+        setStatus('Member deleted successfully!');
+        setTimeout(() => setStatus(''), 3000);
+      } catch (error) {
+        console.error("Delete error:", error);
+        setStatus('Error: Could not delete member.');
+        setTimeout(() => setStatus(''), 3000);
+      }
     }
   };
 
@@ -58,8 +76,13 @@ const TeamManager = () => {
       await saveTeamData({ members });
       setStatus('Team updated successfully!');
       setTimeout(() => setStatus(''), 3000);
+      
+      // Refresh the data so all new members get their official database _id
+      const data = await getTeamData();
+      setMembers(data.members || []);
     } catch (e) {
       setStatus('Error: Could not save team data.');
+      setTimeout(() => setStatus(''), 3000);
     }
   };
 
@@ -90,7 +113,7 @@ const TeamManager = () => {
 
       <div className="members-list">
         {members.map((member, index) => (
-          <div key={index} className="member-form-card">
+          <div key={member._id || index} className="member-form-card">
             <div className="member-grid">
               {/* Image Section */}
               <div className="upload-col">
@@ -135,7 +158,8 @@ const TeamManager = () => {
                 </div>
               </div>
 
-              <button className="btn-delete" onClick={() => removeMember(index)}>
+              {/* Pass BOTH index and _id to the remove function */}
+              <button className="btn-delete" onClick={() => removeMember(index, member._id)}>
                 <Trash2 size={20} />
               </button>
             </div>
