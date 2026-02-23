@@ -83,6 +83,15 @@ export const saveTeamData = async (data) => {
   return res.json();
 };
 
+// Add this new function for deleting team members!
+export const deleteTeamMember = async (memberId) => {
+  const res = await fetch(`${API_URL}/team/${memberId}`, {
+    method: 'DELETE',
+  });
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};
+
 // ---------- Vision ----------
 export const getVisionData = async () => {
   const res = await fetch(`${API_URL}/vision`);
@@ -233,7 +242,7 @@ export const saveCareers = async (jobsArray) => {
 
 // ---------- DASHBOARD STATS ----------
 export const getDashboardStats = async () => {
-  const res = await fetch(`${API_URL}/dashboard/stats`); // <-- PERFECTLY FIXED!
+  const res = await fetch(`${API_URL}/dashboard/stats`); 
   if (!res.ok) await handleFetchError(res);
   return res.json();
 };
