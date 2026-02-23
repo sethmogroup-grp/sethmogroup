@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { getNews, saveNews } from '../services/contentService';
+// IMPORT THE NEW DELETE FUNCTION
+import { getNews, saveNews, deleteNewsArticle } from '../services/contentService';
 import { convertToBase64 } from '../utils/fileHandler';
-import './SectorsManager.css'; // Reusing your existing professional styles
+import './SectorsManager.css';
 
 const NewsManager = () => {
   const [articles, setArticles] = useState([]);
@@ -47,9 +48,25 @@ const NewsManager = () => {
     }
   };
 
-  const handleDelete = (index) => {
-    if (window.confirm("Delete this story?")) {
-      setArticles(articles.filter((_, i) => i !== index));
+  // UPDATED: Targeted database deletion!
+  const handleDelete = async (index, articleId) => {
+    if (window.confirm("Are you sure you want to permanently delete this story?")) {
+      try {
+        if (articleId) {
+          setStatus('Deleting article from database...');
+          await deleteNewsArticle(articleId);
+        }
+        
+        const updated = articles.filter((_, i) => i !== index);
+        setArticles(updated);
+        
+        setStatus('Article deleted successfully!');
+        setTimeout(() => setStatus(''), 3000);
+      } catch (error) {
+        console.error("Delete error:", error);
+        setStatus('Error: Could not delete article.');
+        setTimeout(() => setStatus(''), 3000);
+      }
     }
   };
 
@@ -59,6 +76,10 @@ const NewsManager = () => {
       await saveNews(articles);
       setStatus('Success: News feed updated!');
       setTimeout(() => setStatus(''), 3000);
+      
+      // Refresh the list so new articles get their official database IDs!
+      const data = await getNews();
+      setArticles(data.articles || []);
     } catch (err) {
       setStatus('Error: Failed to save news');
     }
@@ -83,7 +104,7 @@ const NewsManager = () => {
 
       <div className="news-editor-grid">
         {articles.map((article, index) => (
-          <div key={index} className="sector-editor-card" style={{ marginBottom: '30px' }}>
+          <div key={article._id || index} className="sector-editor-card" style={{ marginBottom: '30px' }}>
             <div style={{ display: 'flex', gap: '25px', flexWrap: 'wrap' }}>
               
               {/* Image Column */}
@@ -121,7 +142,8 @@ const NewsManager = () => {
                   <textarea rows="2" value={article.excerpt} onChange={(e) => handleUpdate(index, 'excerpt', e.target.value)} />
                 </div>
 
-                <button className="btn-delete" onClick={() => handleDelete(index)} style={{ color: '#d3121b', background: 'none', border: 'none', cursor: 'pointer', fontWeight: 'bold', marginTop: '10px' }}>
+                {/* Pass BOTH the index and the _id */}
+                <button className="btn-delete" onClick={() => handleDelete(index, article._id)} style={{ color: '#d3121b', background: 'none', border: 'none', cursor: 'pointer', fontWeight: 'bold', marginTop: '10px' }}>
                   Remove Article
                 </button>
               </div>

@@ -206,6 +206,15 @@ export const saveNews = async (newsArray) => {
   return res.json();
 };
 
+// delete function for news articles
+export const deleteNewsArticle = async (articleId) => {
+  const res = await fetch(`${API_URL}/news/${articleId}`, {
+    method: 'DELETE',
+  });
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};
+
 // ---------- Community Page Settings (Banner & Impact) ----------
 export const getCommunitySettings = async () => {
   const res = await fetch(`${API_URL}/community-settings`);
