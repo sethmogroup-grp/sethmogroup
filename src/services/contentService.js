@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 const API_URL = process.env.REACT_APP_API_URL || 'https://sethmoserver.onrender.com/api';
 
 // Helper function to extract error messages from the backend safely
@@ -301,10 +300,30 @@ export const uploadHomeBusinessFile = async (file) => {
   if (!res.ok) await handleFetchError(res);
   return res.json();
 };
-// eslint-disable-next-line no-unused-vars
-const removeBusiness = (index) => {
-    if (window.confirm("Are you sure you want to remove this business? Remember to click 'Save Changes' after!")) {
-      const updated = formData.businesses.filter((_, i) => i !== index);
-      setFormData({ ...formData, businesses: updated });
-    }
-  };
+
+// ---------- Expertise ----------
+export const getExpertiseData = async () => {
+  const res = await fetch(`${API_URL}/expertise`);
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};
+
+export const saveExpertiseData = async (data) => {
+  const res = await fetch(`${API_URL}/expertise`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  });
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};
+export const uploadExpertiseFile = async (file) => {
+  const formData = new FormData();
+  formData.append('file', file);
+  const res = await fetch(`${API_URL}/expertise/upload`, {
+    method: 'POST',
+    body: formData,
+  });
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};

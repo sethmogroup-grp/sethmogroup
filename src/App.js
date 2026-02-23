@@ -20,7 +20,8 @@ import SustainabilityManager from './pages/SustainabilityManager';
 import CommunityManager from './pages/CommunityManager';
 import SettingsManager from './pages/SettingsManager';
 import Login from './pages/Login'; 
-import HomeBusinessManager from './pages/HomeBusinessManager'; // 1. Added Import Here
+import HomeBusinessManager from './pages/HomeBusinessManager';
+import ExpertiseManager from './pages/ExpertiseManager'; // <-- 1. New Import Added
 
 function App() {
   return (
@@ -44,7 +45,7 @@ function App() {
           <Route path="home/hero" element={<HeroManager />} />
           <Route path="home/vision" element={<VisionManager />} />
           <Route path="home/pillars" element={<PillarsManager />} />
-          <Route path="home/businesses" element={<HomeBusinessManager />} /> {/* 2. Added Route Here */}
+          <Route path="home/businesses" element={<HomeBusinessManager />} /> 
 
           {/* Community Group */}
           <Route path="community/settings" element={<CommunityManager />} />
@@ -56,6 +57,7 @@ function App() {
 
           {/* Other Routes */}
           <Route path="sectors" element={<SectorsManager />} />
+          <Route path="expertise" element={<ExpertiseManager />} /> {/* <-- 2. New Route Added */}
           <Route path="careers" element={<CareersManager />} />
           <Route path="sustainability" element={<SustainabilityManager />} />
           <Route path="settings" element={<SettingsManager />} /> 

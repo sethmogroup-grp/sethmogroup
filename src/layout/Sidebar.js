@@ -15,18 +15,16 @@ import {
   Users,
   ShieldCheck,
   HeartHandshake,
-  Building // 1. Added the Building icon here
+  Building,
+  Star // Added Star icon for Expertise
 } from 'lucide-react';
 import './Sidebar.css';
 
 const Sidebar = () => {
   const navigate = useNavigate();
 
-  // Handle Secure Logout
   const handleLogout = () => {
-    // Clear JWT and Session data
     localStorage.removeItem('token');
-    // Force redirect to login page
     navigate('/login', { replace: true });
   };
 
@@ -66,13 +64,10 @@ const Sidebar = () => {
               <ShieldCheck size={16} />
               <span>7 Strategic Pillars</span>
             </NavLink>
-            
-            {/* 2. Added the Our Businesses Link here */}
             <NavLink to="/home/businesses" className={({ isActive }) => isActive ? "nav-item sub-item active" : "nav-item sub-item"}>
               <Building size={16} />
               <span>Our Businesses</span>
             </NavLink>
-            
           </div>
         </div>
 
@@ -116,6 +111,12 @@ const Sidebar = () => {
         <NavLink to="/sectors" className={({ isActive }) => isActive ? "nav-item active" : "nav-item"}>
           <Layers size={20} />
           <span>Sectors / Services</span>
+        </NavLink>
+
+        {/* 5. NEW EXPERTISE LINK */}
+        <NavLink to="/expertise" className={({ isActive }) => isActive ? "nav-item active" : "nav-item"}>
+          <Star size={20} />
+          <span>Our Expertise</span>
         </NavLink>
 
         <NavLink to="/careers" className={({ isActive }) => isActive ? "nav-item active" : "nav-item"}>
