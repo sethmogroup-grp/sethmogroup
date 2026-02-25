@@ -1,3 +1,5 @@
+/* AdminLayout.css */
+
 .admin-container {
   display: flex;
   min-height: 100vh;
@@ -9,4 +11,60 @@
   flex: 1;
   padding: 40px;
   overflow-y: auto;
+  height: 100vh;
+}
+
+/* Mobile Header - Hidden by default on Desktop */
+.mobile-header {
+  display: none;
+  height: 70px;
+  background: white;
+  border-bottom: 1px solid #e2e8f0;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  position: sticky;
+  top: 0;
+  z-index: 40;
+}
+
+.hamburger-btn {
+  background: none;
+  border: none;
+  color: #1a1f2c;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.sidebar-overlay {
+  display: none;
+}
+
+/* --- MOBILE STYLES --- */
+@media (max-width: 768px) {
+  .admin-container {
+    flex-direction: column;
+  }
+  
+  .mobile-header {
+    display: flex; /* Show the top bar on mobile */
+  }
+
+  .admin-content {
+    margin-left: 0; /* Remove the huge left margin */
+    padding: 20px;
+    height: auto;
+  }
+
+  .sidebar-overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 45; /* Sits below the sidebar, above the content */
+  }
 }

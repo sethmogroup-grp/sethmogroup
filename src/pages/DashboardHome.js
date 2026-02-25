@@ -9,9 +9,10 @@ import {
   ChevronRight, 
   PlusCircle, 
   Layout, 
-  UserPlus 
+  UserPlus,
+  Mail // Added the Mail icon
 } from 'lucide-react';
-import { getDashboardStats } from '../services/contentService';
+import { getDashboardStats, getMessages } from '../services/contentService';
 import './DashboardHome.css';
 
 const DashboardHome = () => {
@@ -22,18 +23,31 @@ const DashboardHome = () => {
     teamCount: 0,
     recentActivity: []
   });
+  const [unreadCount, setUnreadCount] = useState(0); // State for unread messages
   const [loading, setLoading] = useState(true);
 
+  // Fetch both Stats AND Messages at the same time
   useEffect(() => {
-    getDashboardStats()
-      .then(data => {
-        setStats(data);
-        setLoading(false);
-      })
-      .catch((err) => {
+    const fetchDashboardData = async () => {
+      try {
+        const [statsData, messagesData] = await Promise.all([
+          getDashboardStats(),
+          getMessages()
+        ]);
+        
+        setStats(statsData);
+        
+        // Filter out only the messages that haven't been read yet
+        const unread = messagesData.filter(m => !m.isRead).length;
+        setUnreadCount(unread);
+      } catch (err) {
         console.error("Dashboard Load Error:", err);
+      } finally {
         setLoading(false);
-      });
+      }
+    };
+
+    fetchDashboardData();
   }, []);
 
   // Navigation Helper
@@ -86,11 +100,21 @@ const DashboardHome = () => {
           </div>
         </div>
 
+        {/* THE NEW UNREAD MESSAGES CARD */}
+        <div className="metric-card" onClick={() => goTo('/messages')} style={{ cursor: 'pointer' }}>
+          <div className="metric-icon green"><Mail size={24} /></div>
+          <div className="metric-info">
+            <span className="metric-label">Unread Messages</span>
+            <h2 className="metric-value text-green">{unreadCount}</h2>
+          </div>
+        </div>
+
+        {/* THE RESTORED SYSTEM STATUS CARD */}
         <div className="metric-card">
           <div className="metric-icon green"><Activity size={24} /></div>
           <div className="metric-info">
             <span className="metric-label">System Status</span>
-            <h2 className="metric-value text-green">Online</h2>
+            <h2 className="metric-value text-green">Live</h2>
           </div>
         </div>
       </div>
@@ -139,6 +163,10 @@ const DashboardHome = () => {
             <h3>Quick Actions</h3>
           </div>
           <div className="shortcut-buttons">
+            <button className="shortcut-btn" onClick={() => goTo('/messages')}>
+              <Mail size={18} />
+              <span>Check Inbox</span>
+            </button>
             <button className="shortcut-btn" onClick={() => goTo('/news')}>
               <PlusCircle size={18} />
               <span>Post News</span>
@@ -150,10 +178,6 @@ const DashboardHome = () => {
             <button className="shortcut-btn" onClick={() => goTo('/home/hero')}>
               <Layout size={18} />
               <span>Update Hero</span>
-            </button>
-            <button className="shortcut-btn" onClick={() => goTo('/careers')}>
-              <Briefcase size={18} />
-              <span>Manage Jobs</span>
             </button>
           </div>
         </div>

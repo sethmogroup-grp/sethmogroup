@@ -10,6 +10,8 @@
   left: 0;
   top: 0;
   border-right: 1px solid #2d3748;
+  z-index: 50; /* Ensure it stays above content on mobile */
+  transition: transform 0.3s ease-in-out; /* Smooth slide for mobile */
 }
 
 /* Header */
@@ -88,6 +90,37 @@
   box-shadow: 0 4px 12px rgba(211, 18, 27, 0.3);
 }
 
+/* Sub-Menus */
+.nav-group {
+  margin-bottom: 8px;
+}
+
+.nav-group-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  color: #718096; 
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.nav-sub-items {
+  padding-left: 10px; /* Indent the children */
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border-left: 1px solid #2d3748; 
+  margin-left: 20px;
+}
+
+.nav-item.sub-item {
+  font-size: 13px; /* Slightly smaller text */
+  padding: 8px 12px;
+}
+
 /* Footer */
 .sidebar-footer {
   padding: 20px;
@@ -115,35 +148,29 @@
   border-color: #718096;
 }
 
-/* ... keep your existing css ... */
-
-/* New Styles for Sub-Menus */
-.nav-group {
-  margin-bottom: 8px;
+/* Sidebar Mobile Close Button (Hidden on Desktop) */
+.close-sidebar-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: #a0aec0;
+  cursor: pointer;
+  margin-left: auto; /* Pushes it to the far right */
 }
 
-.nav-group-label {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 8px 12px;
-  color: #718096; /* Muted color for the label */
-  font-size: 13px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
+/* --- MOBILE SIDEBAR STYLES --- */
+@media (max-width: 768px) {
+  .admin-sidebar {
+    transform: translateX(-100%); /* Hides sidebar off-screen to the left */
+  }
+  
+  /* The class we toggle using React state */
+  .admin-sidebar.open {
+    transform: translateX(0); /* Slides it back on screen */
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.5); /* Add a shadow when open */
+  }
 
-.nav-sub-items {
-  padding-left: 10px; /* Indent the children */
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  border-left: 1px solid #2d3748; /* Optional: adds a guide line */
-  margin-left: 20px;
-}
-
-.nav-item.sub-item {
-  font-size: 13px; /* Slightly smaller text */
-  padding: 8px 12px;
+  .close-sidebar-btn {
+    display: block; /* Show the close button on mobile */
+  }
 }

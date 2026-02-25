@@ -21,7 +21,8 @@ import CommunityManager from './pages/CommunityManager';
 import SettingsManager from './pages/SettingsManager';
 import Login from './pages/Login'; 
 import HomeBusinessManager from './pages/HomeBusinessManager';
-import ExpertiseManager from './pages/ExpertiseManager'; // <-- 1. New Import Added
+import ExpertiseManager from './pages/ExpertiseManager'; 
+import MessagesManager from './pages/MessagesManager'; // <-- 1. New Import Added
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
           }
         >
           <Route index element={<DashboardHome />} />
+          <Route path="messages" element={<MessagesManager />} /> {/* <-- 2. New Route Added */}
           
           {/* Home Page Group */}
           <Route path="home/hero" element={<HeroManager />} />
@@ -57,7 +59,7 @@ function App() {
 
           {/* Other Routes */}
           <Route path="sectors" element={<SectorsManager />} />
-          <Route path="expertise" element={<ExpertiseManager />} /> {/* <-- 2. New Route Added */}
+          <Route path="expertise" element={<ExpertiseManager />} />
           <Route path="careers" element={<CareersManager />} />
           <Route path="sustainability" element={<SustainabilityManager />} />
           <Route path="settings" element={<SettingsManager />} /> 

@@ -317,12 +317,36 @@ export const saveExpertiseData = async (data) => {
   if (!res.ok) await handleFetchError(res);
   return res.json();
 };
+
 export const uploadExpertiseFile = async (file) => {
   const formData = new FormData();
   formData.append('file', file);
   const res = await fetch(`${API_URL}/expertise/upload`, {
     method: 'POST',
     body: formData,
+  });
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};
+
+// ---------- Messages (Inbox) ----------
+export const getMessages = async () => {
+  const res = await fetch(`${API_URL}/messages`);
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};
+
+export const markMessageRead = async (id) => {
+  const res = await fetch(`${API_URL}/messages/${id}/read`, {
+    method: 'PATCH',
+  });
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};
+
+export const deleteMessage = async (id) => {
+  const res = await fetch(`${API_URL}/messages/${id}`, {
+    method: 'DELETE',
   });
   if (!res.ok) await handleFetchError(res);
   return res.json();
