@@ -13,10 +13,11 @@ const Login = () => {
     setLoading(true);
     setError('');
 
-    // This automatically switches between your local backend and your live Render backend
-    const API_URL = process.env.NODE_ENV === 'production' 
-      ? 'https://sethmoserver.onrender.com' 
-      : 'http://localhost:5000';
+    // Uses the deployed API URL when set; falls back to local dev, or the live backend as a last resort
+    const API_URL = process.env.REACT_APP_API_URL
+      || (process.env.NODE_ENV === 'production'
+        ? 'https://sethmogroup-backend.onrender.com'
+        : 'http://localhost:5000');
 
     try {
       // Pointing to the specific login endpoint on your server
