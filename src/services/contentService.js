@@ -83,6 +83,14 @@ export const saveTeamData = async (data) => {
   return res.json();
 };
 
+export const deleteTeamMember = async (memberId) => {
+  const res = await fetch(`${API_URL}/api/team/${memberId}`, {
+    method: 'DELETE',
+  });
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};
+
 // ---------- Vision ----------
 export const getVisionData = async () => {
   const res = await fetch(`${API_URL}/api/vision`);
@@ -192,6 +200,14 @@ export const saveNews = async (newsArray) => {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ articles: newsArray }), 
+  });
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};
+
+export const deleteNewsArticle = async (id) => {
+  const res = await fetch(`${API_URL}/api/news/${id}`, {
+    method: 'DELETE',
   });
   if (!res.ok) await handleFetchError(res);
   return res.json();
