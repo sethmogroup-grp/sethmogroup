@@ -276,3 +276,59 @@ export const deleteMessage = async (id) => {
   if (!res.ok) await handleFetchError(res);
   return res.json();
 };
+
+// ---------- Expertise ----------
+export const getExpertiseData = async () => {
+  const res = await fetch(`${API_URL}/api/expertise`);
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};
+
+export const saveExpertiseData = async (data) => {
+  const res = await fetch(`${API_URL}/api/expertise`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  });
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};
+
+export const uploadExpertiseFile = async (file) => {
+  const formData = new FormData();
+  formData.append('file', file);
+  const res = await fetch(`${API_URL}/api/expertise/upload`, {
+    method: 'POST',
+    body: formData,
+  });
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};
+
+// ---------- Home Page: Our Businesses ----------
+export const getHomeBusinessData = async () => {
+  const res = await fetch(`${API_URL}/api/home-business`);
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};
+
+export const saveHomeBusinessData = async (data) => {
+  const res = await fetch(`${API_URL}/api/home-business`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  });
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};
+
+export const uploadHomeBusinessFile = async (file) => {
+  const formData = new FormData();
+  formData.append('file', file);
+  const res = await fetch(`${API_URL}/api/home-business/upload`, {
+    method: 'POST',
+    body: formData,
+  });
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};
