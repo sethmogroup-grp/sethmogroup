@@ -1,0 +1,11 @@
+/* Reply box + conversation thread inside an opened inbox message */
+.inbox-replies { margin-top: 16px; display: flex; flex-direction: column; gap: 10px; }
+.inbox-reply { border-left: 3px solid #F58634; background: #fff7ed; padding: 10px 14px; border-radius: 0 8px 8px 0; }
+.inbox-reply-meta { font-size: 0.75rem; color: #9a4a0c; margin-bottom: 6px; }
+.inbox-reply-box { margin-top: 16px; }
+.inbox-reply-box textarea {
+  width: 100%; box-sizing: border-box; padding: 12px; border: 1px solid #d1d5db; border-radius: 8px;
+  font: inherit; line-height: 1.5; resize: vertical;
+}
+.inbox-reply-box textarea:focus { outline: none; border-color: #F58634; box-shadow: 0 0 0 3px rgba(245,134,52,.18); }
+.inbox-reply-hint { font-size: 0.75rem; color: #6b7280; margin: 6px 0 0; }

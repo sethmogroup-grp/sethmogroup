@@ -1,0 +1,11 @@
+/* extras for the login / reset-password screens */
+.notice-msg {
+  color: #0f5132;
+  background: #ecfdf3;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  margin-bottom: 20px;
+}
+.back-link { display: block; margin: 18px auto 0; }
+.pw-hint { font-size: 0.72rem; color: #6b7280; margin: -8px 0 18px; text-align: left; }

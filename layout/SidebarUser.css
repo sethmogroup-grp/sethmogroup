@@ -1,0 +1,28 @@
+/* "Who am I logged in as" card at the bottom of the sidebar */
+.sidebar-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  background: #1f2937;
+  text-decoration: none;
+  color: #e5e7eb;
+}
+.sidebar-user:hover { background: #2d3748; }
+.sidebar-user-avatar {
+  flex: 0 0 36px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #F58634;
+  color: #fff;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sidebar-user-text { display: flex; flex-direction: column; min-width: 0; line-height: 1.25; }
+.sidebar-user-text strong { font-size: 0.85rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sidebar-user-text small { font-size: 0.72rem; color: #F58634; text-transform: uppercase; letter-spacing: 0.5px; }
