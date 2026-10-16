@@ -50,7 +50,7 @@
   position: absolute;
   top: -10px;
   left: -10px;
-  background: #d3121b;
+  background: #F58634;
   color: white;
   width: 28px;
   height: 28px;
@@ -87,6 +87,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: top center;
 }
 
 .placeholder-box {
@@ -98,6 +99,17 @@
   display: block;
   font-size: 12px;
   margin-top: 8px;
+}
+
+.member-position-tag {
+  display: block;
+  text-align: center;
+  margin-top: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: #F58634;
 }
 
 /* Input Styles */
@@ -124,7 +136,7 @@
 }
 
 .input-group input:focus {
-  border-color: #d3121b;
+  border-color: #F58634;
   outline: none;
 }
 

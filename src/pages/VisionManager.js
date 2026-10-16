@@ -81,7 +81,7 @@ const VisionManager = () => {
           {/* Left Col: Text Inputs */}
           <div>
             <h3 style={{ marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <FileText size={20} color="#d3121b" /> Text Content
+              <FileText size={20} color="#F58634" /> Text Content
             </h3>
             <div style={{ marginBottom: '20px' }}>
               <label style={{ display: 'block', fontWeight: '600', marginBottom: '8px' }}>Mission Statement</label>
@@ -103,7 +103,7 @@ const VisionManager = () => {
           {/* Right Col: Image Upload Gallery */}
           <div>
             <h3 style={{ marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <ImageIcon size={20} color="#d3121b" /> Side Image
+              <ImageIcon size={20} color="#F58634" /> Side Image
             </h3>
 
             <input 

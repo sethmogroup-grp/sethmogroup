@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { getSettings, saveSettings } from '../services/contentService';
 import { Save, Globe, Mail, Share2, ShieldCheck, Lock } from 'lucide-react'; // Added icons
+import { changeMyPassword } from '../services/accountService';
+import { useAuth } from '../services/AuthContext';
 import './SettingsManager.css';
 
 const SettingsManager = () => {
+  const { user, updateUser } = useAuth();
   const [config, setConfig] = useState({
     companyEmail: '',
     contactPhone: '',
@@ -46,27 +49,14 @@ const SettingsManager = () => {
 
     try {
       setStatus('Updating password...');
-      const res = await fetch('http://localhost:5000/api/auth/change-password', {
-        method: 'POST',
-        headers: { 
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('token')}` // Send JWT token
-        },
-        body: JSON.stringify({
-          currentPassword: passwordData.currentPassword,
-          newPassword: passwordData.newPassword
-        })
-      });
-      
-      const data = await res.json();
-      if (res.ok) {
-        setStatus('Success: Password changed!');
-        setPasswordData({ currentPassword: '', newPassword: '', confirmPassword: '' });
-      } else {
-        setStatus(`Error: ${data.error}`);
-      }
+      // Changes the password of the account you are logged in with (the old code was pinned to
+      // localhost and to one fixed admin email)
+      const data = await changeMyPassword(passwordData.currentPassword, passwordData.newPassword);
+      updateUser(user, data.token); // keep this session signed in
+      setStatus('Success: Password changed!');
+      setPasswordData({ currentPassword: '', newPassword: '', confirmPassword: '' });
     } catch (err) {
-      setStatus('Error: Connection failed');
+      setStatus(`Error: ${err.message || 'Connection failed'}`);
     }
     setTimeout(() => setStatus(''), 3000);
   };

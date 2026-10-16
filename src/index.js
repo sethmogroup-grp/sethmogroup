@@ -3,6 +3,11 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { installAuthInterceptors } from './services/auth';
+
+// Adds the login token to every API request + signs the user out when a session expires.
+// Must run before anything calls the API.
+installAuthInterceptors();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

@@ -91,23 +91,6 @@ export const deleteTeamMember = async (memberId) => {
   return res.json();
 };
 
-// ---------- Vision ----------
-export const getVisionData = async () => {
-  const res = await fetch(`${API_URL}/api/vision`);
-  if (!res.ok) await handleFetchError(res);
-  return res.json();
-};
-
-export const saveVisionData = async (data) => {
-  const res = await fetch(`${API_URL}/api/vision`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data),
-  });
-  if (!res.ok) await handleFetchError(res);
-  return res.json();
-};
-
 // Optional: Generic upload if needed
 export const uploadFile = async (file, section) => {
   const formData = new FormData();
@@ -293,6 +276,41 @@ export const deleteMessage = async (id) => {
   return res.json();
 };
 
+export const markMessageUnread = async (id) => {
+  const res = await fetch(`${API_URL}/api/messages/${id}/unread`, {
+    method: 'PATCH',
+  });
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};
+
+export const markAllMessagesRead = async () => {
+  const res = await fetch(`${API_URL}/api/messages/read-all`, {
+    method: 'PATCH',
+  });
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};
+
+export const getUnreadCount = async () => {
+  const res = await fetch(`${API_URL}/api/messages/unread-count`);
+  if (!res.ok) await handleFetchError(res);
+  return res.json(); // { count }
+};
+
+// ---------- Website Analytics (visits & engagement from the public site) ----------
+export const getAnalyticsSummary = async (days = 14) => {
+  const res = await fetch(`${API_URL}/api/analytics/summary?days=${days}`);
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};
+
+export const getRecentVisits = async (limit = 15) => {
+  const res = await fetch(`${API_URL}/api/analytics/recent?limit=${limit}`);
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};
+
 // ---------- Expertise ----------
 export const getExpertiseData = async () => {
   const res = await fetch(`${API_URL}/api/expertise`);
@@ -348,3 +366,178 @@ export const uploadHomeBusinessFile = async (file) => {
   if (!res.ok) await handleFetchError(res);
   return res.json();
 };
+
+// ---------- Promises Section ----------
+export const getPromisesData = async () => {
+  const res = await fetch(`${API_URL}/api/promises`);
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};
+
+export const savePromisesData = async (data) => {
+  const res = await fetch(`${API_URL}/api/promises`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  });
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};
+
+export const uploadPromiseFile = async (file) => {
+  const formData = new FormData();
+  formData.append('file', file);
+  const res = await fetch(`${API_URL}/api/promises/upload`, {
+    method: 'POST',
+    body: formData,
+  });
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};
+
+// ---------- Full-Bleed Banner Section ----------
+export const getFullBleedData = async () => {
+  const res = await fetch(`${API_URL}/api/full-bleed`);
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};
+
+export const saveFullBleedData = async (data) => {
+  const res = await fetch(`${API_URL}/api/full-bleed`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  });
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};
+
+export const uploadFullBleedFile = async (file) => {
+  const formData = new FormData();
+  formData.append('file', file);
+  const res = await fetch(`${API_URL}/api/full-bleed/upload`, {
+    method: 'POST',
+    body: formData,
+  });
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};
+
+// ---------- News Banner (homepage CTA) ----------
+export const getNewsBanner = async () => {
+  const res = await fetch(`${API_URL}/api/news-banner`);
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};
+
+export const saveNewsBanner = async (data) => {
+  const res = await fetch(`${API_URL}/api/news-banner`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  });
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};
+
+
+// ---------- Home sections: Footprint / Vision / Mission, Customer Centric, Business Focus, Subsidiaries ----------
+const makeSectionApi = (path) => ({
+  get: async () => {
+    const res = await fetch(`${API_URL}/api/${path}`);
+    if (!res.ok) await handleFetchError(res);
+    return res.json();
+  },
+  save: async (data) => {
+    const res = await fetch(`${API_URL}/api/${path}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+    if (!res.ok) await handleFetchError(res);
+    return res.json();
+  },
+  upload: async (file) => {
+    const formData = new FormData();
+    formData.append('file', file);
+    const res = await fetch(`${API_URL}/api/${path}/upload`, {
+      method: 'POST',
+      body: formData,
+    });
+    if (!res.ok) await handleFetchError(res);
+    return res.json();
+  },
+});
+
+const footprintTabsApi = makeSectionApi('footprint-tabs');
+export const getFootprintTabs = footprintTabsApi.get;
+export const saveFootprintTabs = footprintTabsApi.save;
+export const uploadFootprintFile = footprintTabsApi.upload;
+
+const customerCentricApi = makeSectionApi('customer-centric');
+export const getCustomerCentric = customerCentricApi.get;
+export const saveCustomerCentric = customerCentricApi.save;
+export const uploadCustomerCentricFile = customerCentricApi.upload;
+
+const businessFocusApi = makeSectionApi('business-focus');
+export const getBusinessFocus = businessFocusApi.get;
+export const saveBusinessFocus = businessFocusApi.save;
+export const uploadBusinessFocusFile = businessFocusApi.upload;
+
+const subsidiariesApi = makeSectionApi('subsidiaries-section');
+export const getSubsidiariesSection = subsidiariesApi.get;
+export const saveSubsidiariesSection = subsidiariesApi.save;
+export const uploadSubsidiariesFile = subsidiariesApi.upload;
+
+const highlightsApi = makeSectionApi('highlights');
+export const getHighlights = highlightsApi.get;
+export const saveHighlights = highlightsApi.save;
+export const uploadHighlightsFile = highlightsApi.upload;
+
+const newsletterApi = makeSectionApi('newsletter');
+export const getNewsletterSection = newsletterApi.get;
+export const saveNewsletterSection = newsletterApi.save;
+export const uploadNewsletterFile = newsletterApi.upload;
+
+export const getNewsletterSubscribers = async () => {
+  const res = await fetch(`${API_URL}/api/newsletter-subscribers`);
+  if (!res.ok) await handleFetchError(res);
+  return res.json();
+};
+
+const aboutPageApi = makeSectionApi('about-page');
+export const getAboutPage = aboutPageApi.get;
+export const saveAboutPage = aboutPageApi.save;
+export const uploadAboutPageFile = aboutPageApi.upload;
+
+const sustainabilityPageApi = makeSectionApi('sustainability-page');
+export const getSustainabilityPage = sustainabilityPageApi.get;
+export const saveSustainabilityPage = sustainabilityPageApi.save;
+export const uploadSustainabilityPageFile = sustainabilityPageApi.upload;
+
+const employeesPageApi = makeSectionApi('employees-page');
+export const getEmployeesPage = employeesPageApi.get;
+export const saveEmployeesPage = employeesPageApi.save;
+export const uploadEmployeesPageFile = employeesPageApi.upload;
+
+const careersPageApi = makeSectionApi('careers-page');
+export const getCareersPage = careersPageApi.get;
+export const saveCareersPage = careersPageApi.save;
+export const uploadCareersPageFile = careersPageApi.upload;
+
+const agendaBannerApi = makeSectionApi('agenda-banner');
+export const getAgendaBanner = agendaBannerApi.get;
+export const saveAgendaBanner = agendaBannerApi.save;
+export const uploadAgendaBannerFile = agendaBannerApi.upload;
+
+const socialImpactApi = makeSectionApi('social-impact');
+export const getSocialImpact = socialImpactApi.get;
+export const saveSocialImpact = socialImpactApi.save;
+export const uploadSocialImpactFile = socialImpactApi.upload;
+
+const footerSettingsApi = makeSectionApi('footer-settings');
+export const getFooterSettings = footerSettingsApi.get;
+export const saveFooterSettings = footerSettingsApi.save;
+
+// Alias kept for pages still importing the older name.
+export const uploadAboutFile = uploadAboutPageFile;

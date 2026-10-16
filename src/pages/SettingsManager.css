@@ -11,5 +11,5 @@
   border-radius: 16px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.05);
 }
-.card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; color: #d3121b; }
+.card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; color: #F58634; }
 .card-header h3 { margin: 0; color: #1a1a1a; font-size: 1.1rem; }

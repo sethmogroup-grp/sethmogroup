@@ -15,7 +15,7 @@
 .visual-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(211, 18, 27, 0.6), rgba(0, 0, 0, 0.85));
+  background: linear-gradient(135deg, rgba(245, 134, 52, 0.6), rgba(0, 0, 0, 0.85));
 }
 
 .visual-content {
@@ -31,7 +31,7 @@
 
 .mini-logo {
   width: 50px; height: 50px;
-  background: #d3121b;
+  background: #F58634;
   display: flex; align-items: center; justify-content: center;
   font-weight: 900; border-radius: 12px;
   margin-bottom: 25px; box-shadow: 0 10px 20px rgba(0,0,0,0.2);
@@ -83,8 +83,8 @@
 }
 
 .input-field input:focus {
-  border-color: #d3121b;
-  box-shadow: 0 0 0 4px rgba(211, 18, 27, 0.1);
+  border-color: #F58634;
+  box-shadow: 0 0 0 4px rgba(245, 134, 52, 0.1);
   background: white;
 }
 
@@ -111,9 +111,9 @@
 }
 
 .submit-btn:hover:not(:disabled) {
-  background: #d3121b;
+  background: #F58634;
   transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(211, 18, 27, 0.2);
+  box-shadow: 0 10px 20px rgba(245, 134, 52, 0.2);
 }
 
 .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
@@ -130,4 +130,14 @@
 
 @media (max-width: 1024px) {
   .login-visual { display: none; }
+}
+
+/* Sethmo logo on the login banner (replaces the old SG square) */
+.login-logo {
+  width: 190px;
+  max-width: 60%;
+  height: auto;
+  display: block;
+  margin-bottom: 25px;
+  filter: drop-shadow(0 6px 14px rgba(0,0,0,0.35));
 }

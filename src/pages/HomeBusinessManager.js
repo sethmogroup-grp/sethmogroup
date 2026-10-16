@@ -97,7 +97,7 @@ const HomeBusinessManager = () => {
 
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px' }}>
         <h3>Business Tiles ({formData.businesses.length})</h3>
-        <button onClick={addBusiness} style={{ display: 'flex', alignItems: 'center', gap: '5px', padding: '8px 12px', background: '#d3121b', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>
+        <button onClick={addBusiness} style={{ display: 'flex', alignItems: 'center', gap: '5px', padding: '8px 12px', background: '#F58634', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>
           <Plus size={16} /> Add Business
         </button>
       </div>

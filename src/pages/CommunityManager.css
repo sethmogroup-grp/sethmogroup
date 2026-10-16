@@ -18,7 +18,7 @@
 .mgr-subtitle { color: #888; margin-top: 5px; }
 
 .mgr-btn-save {
-  background: #d3121b;
+  background: #F58634;
   color: white;
   border: none;
   padding: 12px 30px;
@@ -28,7 +28,7 @@
   transition: 0.3s;
 }
 
-.mgr-btn-save:hover { background: #a80e15; transform: translateY(-2px); }
+.mgr-btn-save:hover { background: #D9701C; transform: translateY(-2px); }
 
 /* Editor Cards */
 .comm-editor-card {

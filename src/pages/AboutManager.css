@@ -70,7 +70,7 @@
 
 .tile-content { padding: 20px; text-align: center; }
 .tile-name { font-size: 1.25rem; font-weight: 700; color: #1a1f2c; margin-bottom: 5px; }
-.tile-role { color: #d3121b; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; margin-bottom: 15px; }
+.tile-role { color: #F58634; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; margin-bottom: 15px; }
 .tile-link {
   background: none; border: 1px solid #e2e8f0; padding: 8px 20px; 
   border-radius: 4px; font-size: 0.8rem; cursor: pointer; transition: 0.2s;

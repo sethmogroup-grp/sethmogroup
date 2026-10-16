@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import Sidebar from './Sidebar'; 
 import { Menu } from 'lucide-react'; // Import the Hamburger icon
+import logoDark from '../assets/sethmo-logo.png';
 import './AdminLayout.css';
 
 const AdminLayout = () => {
@@ -12,8 +13,8 @@ const AdminLayout = () => {
       {/* Mobile Top Bar - Only visible on small screens */}
       <div className="mobile-header">
         <div style={{ display: 'flex', alignItems: 'center' }}>
-          <div className="admin-logo" style={{ marginRight: '10px' }}>SG</div>
-          <span className="brand-name" style={{ color: '#1a1f2c' }}>Sethmo Admin</span>
+          <img src={logoDark} alt="Sethmo Group" style={{ height: '48px', width: 'auto', marginRight: '10px' }} />
+          <span className="brand-name">Admin</span>
         </div>
         <button className="hamburger-btn" onClick={() => setIsMobileOpen(true)}>
           <Menu size={28} />

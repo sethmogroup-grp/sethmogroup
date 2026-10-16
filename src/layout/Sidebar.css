@@ -16,17 +16,25 @@
 
 /* Header */
 .sidebar-header {
-  height: 70px;
+  height: 84px;
   display: flex;
   align-items: center;
   padding: 0 24px;
   border-bottom: 1px solid #2d3748;
 }
 
+.admin-logo-img {
+  height: 54px;
+  width: auto;
+  display: block;
+  margin-right: 12px;
+}
+
+/* (old "SG" square - no longer used, kept so nothing else breaks) */
 .admin-logo {
   width: 32px;
   height: 32px;
-  background-color: #d3121b; /* Sethmo Red */
+  background-color: #F58634; /* Sethmo Orange */
   color: white;
   border-radius: 6px;
   display: flex;
@@ -38,11 +46,29 @@
 }
 
 .brand-name {
-  color: white;
-  font-weight: 600;
-  font-size: 16px;
-  letter-spacing: 0.5px;
+  color: #F58634;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
+
+/* Unread counter on the Inbox link */
+.nav-badge {
+  margin-left: auto;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 7px;
+  border-radius: 11px;
+  background: #F58634;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.nav-item.active .nav-badge { background: #fff; color: #D9701C; }
 
 /* Navigation */
 .sidebar-nav {
@@ -85,9 +111,9 @@
 }
 
 .nav-item.active {
-  background-color: #d3121b; /* Active State Red */
+  background-color: #F58634; /* Active State Orange */
   color: white;
-  box-shadow: 0 4px 12px rgba(211, 18, 27, 0.3);
+  box-shadow: 0 4px 12px rgba(245, 134, 52, 0.3);
 }
 
 /* Sub-Menus */

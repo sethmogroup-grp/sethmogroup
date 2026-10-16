@@ -133,7 +133,7 @@ const HeroManager = () => {
         {formData.mediaType === 'video' && (
           <>
             <h3 style={{ marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <Video size={20} color="#d3121b" /> Background Video
+              <Video size={20} color="#F58634" /> Background Video
             </h3>
 
             {/* Upload Option */}
@@ -178,7 +178,7 @@ const HeroManager = () => {
         {formData.mediaType === 'image' && (
           <>
             <h3 style={{ marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <Image size={20} color="#d3121b" /> Background Image
+              <Image size={20} color="#F58634" /> Background Image
             </h3>
 
             {/* Upload Option */}
@@ -222,7 +222,7 @@ const HeroManager = () => {
 
         {/* Button Settings */}
         <h3 style={{ marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <Type size={20} color="#d3121b" /> Button Content & Links
+          <Type size={20} color="#F58634" /> Button Content & Links
         </h3>
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
@@ -281,7 +281,7 @@ const HeroManager = () => {
 
         {/* Overlay Color */}
         <h3 style={{ marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <Palette size={20} color="#d3121b" /> Overlay Gradient
+          <Palette size={20} color="#F58634" /> Overlay Gradient
         </h3>
         <div>
           <input
